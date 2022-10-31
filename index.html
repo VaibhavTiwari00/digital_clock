@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clock</title>
+
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <h2>Digital Clock</h2>
+    <div class="clock-parent">
+      <div class="clock">
+        <div class="clock-child hour">00</div>
+        <div class="clock-child min">00</div>
+        <div class="clock-child sec">00</div>
+        <span class="time-tt"></span>
+      </div>
+    </div>
+    <script>
+      const hour_ele = document.querySelector(".hour");
+      const min_ele = document.querySelector(".min");
+      const sec_ele = document.querySelector(".sec");
+      const ampm = document.querySelector(".time-tt");
+
+      setInterval(() => {
+        let time = new Date();
+
+        let hh = time.getHours();
+        let mm = time.getMinutes();
+        let ss = time.getSeconds();
+
+        if (hh > 12) {
+          hh = hh - 12;
+          hh > 9 ? (hour_ele.innerHTML = hh) : (hour_ele.innerHTML = "0" + hh);
+          ampm.innerHTML = "pm";
+        } else if (hh == 0) {
+          hour_ele.innerHTML = 12;
+          ampm.innerHTML = "am";
+        } else {
+          hour_ele.innerHTML = hh;
+          hh = 12 ? (ampm.innerHTML = "pm") : (ampm.innerHTML = "am");
+        }
+
+        mm > 9 ? (min_ele.innerHTML = mm) : (min_ele.innerHTML = "0" + mm);
+
+        ss > 9 ? (sec_ele.innerHTML = ss) : (sec_ele.innerHTML = "0" + ss);
+      }, 1000);
+    </script>
+  </body>
+</html>
